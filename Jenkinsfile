@@ -2,7 +2,7 @@ pipeline{
     agent any
 
     options {
-        ansiColor {'xterm'}
+        ansiColor ('xterm')
     }
 
     stages{
@@ -11,7 +11,6 @@ pipeline{
                 echo "Executing Build"
             }
         }
-    }
         stage('Test'){
             steps{
                 echo "Executing Test"
@@ -19,5 +18,6 @@ pipeline{
         }
         stage('Deploy'){
                 echo "Executing Deploy"
-        }
+        }  
+    }       
 }
