@@ -1,4 +1,0 @@
-"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
-"passed","Thu Jan 05 18:10:08 ART 2023","Thu Jan 05 18:10:12 ART 2023","3477","","Test UI","","","","url should match",""
-"passed","Thu Jan 05 18:10:15 ART 2023","Thu Jan 05 18:10:17 ART 2023","1818","","Test UI","","","","version should match",""
-"passed","Thu Jan 05 18:10:12 ART 2023","Thu Jan 05 18:10:14 ART 2023","2615","","Test UI","","","","title should match",""

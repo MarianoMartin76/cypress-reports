@@ -4,17 +4,26 @@
   "description": "Simple project to integrate allure report with Cypress",
   "main": "index.js",
   "dependencies": {
-    "eslint-plugin-cypress": "^2.12.1"
+    "eslint": "^8.44.0",
+    "eslint-plugin-cypress": "^2.13.3",
+    "mocha": "^10.2.0",
+    "uuid": "^9.0.0"
   },
   "devDependencies": {
-    "@shelex/cypress-allure-plugin": "^2.34.0",
-    "cypress": "^12.16.0"
+    "@shelex/cypress-allure-plugin": "^2.40.0",
+    "allure-commandline": "^2.23.0",
+    "cypress": "^12.16.0",
+    "cypress-mochawesome-reporter": "^3.5.1",
+    "mocha-allure-reporter": "^1.4.0"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "cypress:open": "cypress open",
     "cypress:ci": "cypress run",
-    "cypress:allure": "cypress run --env allure=true",
+    "cypress:mocha": "cypress run --reporter mochawesome",
+    "cypress:allure": "cypress run --spec cypress/e2e/* --env allure=true",
+    "ui-regression": "cypress run --browser chrome --spec cypress/e2e/1-getting-started/**.js",
+    "ui-regression-allure": "cypress run --browser chrome --spec cypress/e2e/**.js --env allure=true",
+    "allure:clear": "rm -r allure-results/ allure-report cypress/screenshots || true",
     "allure:report": "allure generate allure-results --clean -o allure-report",
     "allure:history": "mv -f allure-report/history allure-results/history && rm -r allure-report || true"
   },
