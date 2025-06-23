@@ -2,20 +2,17 @@ pipeline{
     agent any
 
     stages{
-        stage("Build"){
-            steps{
-                echo "========executing Build ========"
+        stage("Descargar imagen cypress"){
+            agent {
+                docker {
+                    image 'cypress/included:14.17.0'
+                    args '-u root:root'
+                }
             }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========Build executed successfully========"
-                }
-                failure{
-                    echo "========Build execution failed========"
-                }
+            steps{
+                echo "======== Descargando ========"
+                sh 'npm --version'
+                sh 'cypress verify'
             }
         }
         stage("Test"){
