@@ -1,50 +1,30 @@
-pipeline{
+pipeline {
     agent any
 
-    stages{
-        stage("Descargar imagen cypress"){
+    stages {
+        stage('Sin Docker') {
+            steps {
+                sh '''
+                    echo "Sin Docker"
+                    ls -lha
+                    touch container-no.txt
+                '''
+            }
+        }
+        stage('Con Docker') {
             agent {
                 docker {
-                    image 'cypress/included:14.17.0'
-                    args '-u root:root'
+                    image 'node:18-alpine'
+                    reuseNode true
                 }
             }
-            steps{
-                echo "======== Descargando ========"
-                sh 'npm --version'
-                sh 'cypress verify'
+            steps {
+                sh '''
+                    echo "Con Docker"
+                    ls -lha
+                    touch container-yes.txt
+                '''
             }
-        }
-        stage("Test"){
-            steps{
-                echo "========executing Test ========"
-                script {
-                    def test = 2 + 2 > 3 ? 'cool' : 'not cool'
-                    echo test
-                }
-            }
-            post{
-                always{
-                    echo "========always========"
-                }
-                success{
-                    echo "========Test executed successfully========"
-                }
-                failure{
-                    echo "========Test execution failed========"
-                }
-            }
-        }
-    }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
         }
     }
 }

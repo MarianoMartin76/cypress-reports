@@ -77,3 +77,6 @@ web_modules/
 
 # Local History for Visual Studio Code
 .history/
+
+# jar files
+*.jar
